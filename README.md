@@ -1,0 +1,101 @@
+# Memória
+
+A mobile-friendly, Portuguese-language flashcard website for concurso preparation. Content lives in the repository; personal review progress lives in the browser. No accounts, database, or backend.
+
+## Run
+
+Requires Node.js 22.6+ (Node 24 recommended).
+
+```sh
+npm install
+npm run dev
+```
+
+Open the URL printed by Vite. The dev server binds to all interfaces, so you can also visit it from a phone on the same network using your computer's IP address.
+
+```sh
+npm run build
+npm run preview
+npm test
+```
+
+Deploy `dist/` to any static host at the domain root. HTTPS (or localhost) is required for the service worker. Production builds cache the app and its bundled content for offline use after an initial successful visit. System fonts work offline without third-party font requests. Development does not register a service worker.
+
+## Appearance and mobile layout
+
+Use **Configurações → Aparência** to choose **Claro**, **Escuro**, or **Sistema** (the default). The preference is saved locally under `memoria-theme`, separately from study progress. System mode follows device changes automatically; the initial theme is applied before rendering to avoid a light flash. If browser storage is blocked, the choice still works for the current visit.
+
+The home screen prioritizes reviewing and choosing subjects; statistics remain under **Meu progresso**. During training the sidebar disappears. On mobile, reveal/rating controls stay at the bottom with safe-area spacing; the explanation remains scrollable. Low-height landscape layouts use sticky controls instead to avoid covering the content. Selecting a subject scopes the main review button to that subject.
+
+### Browser checks
+
+```sh
+npx playwright install --with-deps chromium
+npm run test:ui
+```
+
+These checks cover theme persistence and system changes, mobile navigation focus, keyboard training, progress saving, and narrow-screen layouts. Mobile tests emulate a phone in Chromium, not a physical iOS device.
+
+## Add your content
+
+Edit **`src/content.ts`**:
+
+- `subjects`: nested subject tree. IDs must be unique and stable. Create as many levels as you need.
+- `explanations`: reusable main content with title, paragraphs, and source.
+- `cards`: question, direct answer, leaf `subjectId`, and shared `explanationId`.
+
+Multiple cards can point to the same explanation. Updating that explanation updates the content shown with every related card. Card IDs are used to persist scheduling: keep them stable when editing questions. The included 12 cards are demonstration material, not a complete course.
+
+```ts
+// Leaf inside subjects:
+{ id: 'my-topic', title: 'Meu tópico' }
+
+// Inside explanations:
+{
+  id: 'my-explanation',
+  title: 'Entenda o conceito',
+  paragraphs: ['Explicação principal.', 'Exemplo ou dica de memorização.'],
+  source: 'Referência do conteúdo',
+}
+
+// Inside cards:
+{
+  id: 'my-card',
+  subjectId: 'my-topic',
+  question: 'Qual é a pergunta?',
+  answer: 'Resposta direta.',
+  explanationId: 'my-explanation',
+  type: 'Pergunta e resposta', // or 'Certo ou errado'
+  tag: 'Tema',
+}
+```
+
+## Reviews
+
+Select a whole subject branch or a specific leaf. Search/filter cards and use **Estudar seleção**, or start due reviews from the dashboard. Clicking a card opens its answer and explanation without changing progress.
+
+During a session, try recalling the answer before revealing it, then choose:
+
+- **De novo**: return the card to the session queue; schedule it in one minute if you leave.
+- **Difícil**: interval × 1.2, rounded, minimum one day.
+- **Bom**: interval × 2.5, rounded, minimum one day.
+- **Fácil**: interval × 3.5, rounded, minimum four days.
+
+This is a deliberately simple spaced-repetition scheduler, not Anki's algorithm. Practicing a card early also updates its schedule. Daily counts include repeated attempts. Keyboard users can tab through all controls; Space reveals an answer (or activates the focused button), and 1–4 rate it. Shortcuts are disabled in dialogs and text fields. Dialogs trap focus and close with Escape.
+
+## Local data and backups
+
+Progress is saved after every rating in `localStorage` under `memoria-progress-v1`. Clearing browser data removes it. Different browsers, origins, and devices have independent progress; there is no automatic synchronization. Avoid simultaneous study in multiple tabs, as the last save wins.
+
+Use **Configurações → Exportar backup** regularly. Importing a validated backup replaces local progress after confirmation. Resetting progress does not delete project-defined cards. The app warns when browser storage is unavailable.
+
+## Project structure
+
+- `src/content.ts` — subject tree, cards, shared explanations
+- `src/scheduler.ts` — scheduling, date keys, backup validation
+- `src/main.tsx` — React UI, sessions, local persistence
+- `src/styles.css` — theme tokens, responsive design and reduced-motion support
+- `src/theme.ts` — persisted appearance preference and system-theme updates
+- `public/sw.js` — production offline caching
+- `tests/scheduler.test.mjs` — scheduling, backups, content integrity tests
+- `tests/browser/refinements.spec.ts` — desktop/mobile browser checks

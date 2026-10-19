@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f7f8fa" />
+    <meta
+      name="description"
+      content="Seu espaço de revisão para concursos. Flashcards organizados, aprendizado conectado e progresso salvo no seu navegador."
+    />
+    <script>
+      // Resolve before first paint, including when storage is blocked.
+      (() => {
+        let preference = "system";
+        try {
+          preference = localStorage.getItem("memoria-theme") || "system";
+        } catch {}
+        const dark =
+          preference === "dark" ||
+          (preference !== "light" &&
+            matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.dataset.theme = dark ? "dark" : "light";
+        document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        document.querySelector('meta[name="theme-color"]').content = dark
+          ? "#17181e"
+          : "#f7f8fa";
+      })();
+    </script>
+    <title>Memória — Flashcards</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -731,7 +731,7 @@ function App() {
                             const list = cards.filter((c) =>
                               descendantIds(s).includes(c.subjectId),
                             );
-                            const Icon = icons[i];
+                            const Icon = icons[i] ?? Folder;
                             const studied = list.filter(
                               (c) => store.progress[c.id],
                             ).length;

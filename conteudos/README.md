@@ -1,10 +1,14 @@
 # Conteúdos de estudo
 
-Base de explicações em Markdown, organizada por concurso, bloco, disciplina e tópico. A navegação começa pelos índices e chega às aulas de cada assunto.
+Base de explicações em Markdown, organizada por concurso ou disciplina, com tópicos e referências. A navegação começa pelos índices e chega às aulas de cada assunto.
 
 ## Concursos
 
 - [CGU 2026 — Auditor Federal de Finanças e Controle](cgu-2026/README.md)
+
+## Disciplinas independentes
+
+- [Desenho Técnico Mecânico — 100 cartões](desenho-tecnico-mecanico/README.md)
 
 ## Convenções
 

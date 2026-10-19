@@ -65,7 +65,7 @@ Edit **`src/content.ts`**:
 - `explanations`: reusable main content with title, paragraphs, and source.
 - `cards`: question, direct answer, leaf `subjectId`, and shared `explanationId`.
 
-Multiple cards can point to the same explanation. Updating that explanation updates the content shown with every related card. Card IDs are used to persist scheduling: keep them stable when editing questions. The app includes 50 original CGU 2026 study cards on Estado e política, alongside the original 12 demonstration cards. These are study material, not official exam questions or a complete course.
+Multiple cards can point to the same explanation. Updating that explanation updates the content shown with every related card. Card IDs are used to persist scheduling: keep them stable when editing questions. The app includes a separate deck of 100 Desenho Técnico Mecânico cards, 50 CGU 2026 cards on Estado e política, and the original 12 demonstration cards. These are study material, not official exam questions or a complete course.
 
 The CGU deck lives in `src/decks/cgu-estado-politica.ts` and is registered in `src/content.ts`. Its subject hierarchy follows CGU 2026 → Conhecimentos básicos → Estado e política → the nine syllabus topics. Each card references a shared explanation whose source points to the corresponding Markdown lesson and references.
 
@@ -95,6 +95,8 @@ The CGU deck lives in `src/decks/cgu-estado-politica.ts` and is registered in `s
 
 ## Reviews
 
+The independent **Desenho Técnico Mecânico** subject contains 100 cards: 80 direct questions and 20 true/false items, organized into ten topics. Its IDs use the `dtm-` prefix. The [deck guide and references](conteudos/desenho-tecnico-mecanico/README.md) document its scope, conventions, and original numerical exercises.
+
 Select a whole subject branch or a specific leaf. Search/filter cards and use **Estudar seleção**, or start due reviews from the dashboard. Clicking a card opens its answer and explanation without changing progress.
 
 During a session, try recalling the answer before revealing it, then choose:
@@ -118,6 +120,7 @@ Use **Configurações → Exportar backup** regularly. Importing a validated bac
 
 - `src/content.ts` — subject tree, cards, shared explanations
 - `src/decks/cgu-estado-politica.ts` — 50 CGU cards and their subject tree and shared explanations
+- `src/decks/desenho-tecnico-mecanico.ts` — 100 mechanical drawing cards in a separate subject tree
 - `src/scheduler.ts` — scheduling, date keys, backup validation
 - `src/main.tsx` — React UI, sessions, local persistence
 - `src/styles.css` — theme tokens, responsive design and reduced-motion support

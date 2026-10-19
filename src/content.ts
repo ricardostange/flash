@@ -1,10 +1,12 @@
 import { cguEstadoPoliticaCards, cguEstadoPoliticaExplanations, cguEstadoPoliticaSubjects } from './decks/cgu-estado-politica.ts';
+import { desenhoTecnicoMecanicoCards, desenhoTecnicoMecanicoExplanations, desenhoTecnicoMecanicoSubjects } from './decks/desenho-tecnico-mecanico.ts';
 
 export type Subject = { id: string; title: string; children?: Subject[] };
 export type Explanation = { id: string; title: string; paragraphs: string[]; source: string };
 export type Card = { id: string; subjectId: string; question: string; answer: string; explanationId: string; type: 'Certo ou errado' | 'Pergunta e resposta'; tag: string };
 
 export const subjects: Subject[] = [
+  ...desenhoTecnicoMecanicoSubjects,
   ...cguEstadoPoliticaSubjects,
   { id: 'constitucional', title: 'Direito Constitucional', children: [
     { id: 'principios', title: 'Princípios fundamentais', children: [
@@ -17,6 +19,7 @@ export const subjects: Subject[] = [
   { id: 'portugues', title: 'Língua Portuguesa', children: [{ id: 'gramatica', title: 'Gramática', children: [{ id: 'crase', title: 'Uso da crase' }] }] },
 ];
 export const explanations: Explanation[] = [
+  ...desenhoTecnicoMecanicoExplanations,
   ...cguEstadoPoliticaExplanations,
   { id: 'art1', title: 'Os cinco fundamentos da República', paragraphs: [
     'O art. 1º da Constituição Federal estabelece cinco fundamentos da República Federativa do Brasil: soberania, cidadania, dignidade da pessoa humana, valores sociais do trabalho e da livre iniciativa e pluralismo político.',
@@ -28,6 +31,7 @@ export const explanations: Explanation[] = [
   { id: 'crase-regra', title: 'Crase: a fusão de dois “a”', paragraphs: ['A crase pode ocorrer quando a preposição a se encontra com o artigo feminino a. Em “Vou à escola”, o verbo exige a preposição e o substantivo admite o artigo.', 'Um teste útil é substituir o termo feminino por um masculino equivalente: “Vou ao colégio”. O encontro “ao” é um indício de crase na construção feminina.'], source: 'Material demonstrativo · Gramática normativa' },
 ];
 export const cards: Card[] = [
+  ...desenhoTecnicoMecanicoCards,
   ...cguEstadoPoliticaCards,
   { id: 'fund-1', subjectId: 'fundamentos', question: 'A soberania é um dos fundamentos da República Federativa do Brasil.', answer: 'Certo. A soberania está prevista no art. 1º, inciso I, da Constituição Federal.', explanationId: 'art1', type: 'Certo ou errado', tag: 'Art. 1º' },
   { id: 'fund-2', subjectId: 'fundamentos', question: 'Quais são os cinco fundamentos da República Federativa do Brasil?', answer: 'Soberania, cidadania, dignidade da pessoa humana, valores sociais do trabalho e da livre iniciativa e pluralismo político.', explanationId: 'art1', type: 'Pergunta e resposta', tag: 'Art. 1º' },

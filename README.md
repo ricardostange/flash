@@ -19,7 +19,28 @@ npm run preview
 npm test
 ```
 
-Deploy `dist/` to any static host at the domain root. HTTPS (or localhost) is required for the service worker. Production builds cache the app and its bundled content for offline use after an initial successful visit. System fonts work offline without third-party font requests. Development does not register a service worker.
+Deploy `dist/` to a static host. The default base path is `/`; set `VITE_BASE_PATH=/flash/` when building for a subdirectory. HTTPS (or localhost) is required for the service worker. Production builds cache the app and its bundled content for offline use after an initial successful visit. System fonts work offline without third-party font requests. Development does not register a service worker.
+
+## Deploy to GitHub Pages
+
+The workflow in `.github/workflows/deploy.yml` tests, builds, and deploys on pushes to `main`. It derives the base path from GitHub Pages, so both project URLs and custom domains work without hardcoding a repository name.
+
+1. Open the repository's **Settings → Pages**.
+2. Under **Build and deployment → Source**, select **GitHub Actions**.
+3. Commit and push these project files to `main` (including the workflow and `package-lock.json`, not `dist/` or `node_modules/`).
+4. Open **Actions → Deploy flash to GitHub Pages** and wait for the build and deployment jobs to succeed. You can also use **Run workflow** to deploy manually.
+5. Visit **https://ricardostange.github.io/flash/**. The deployment URL also appears in the workflow and Pages settings.
+
+To preview the project-path build locally on Linux/macOS:
+
+```sh
+VITE_BASE_PATH=/flash/ npm run build
+VITE_BASE_PATH=/flash/ npm run preview
+```
+
+Open the printed server URL with `/flash/` appended. The manifest, icons, bundles, service worker, and offline cache all respect this path.
+
+Localhost progress does not automatically transfer to the deployed site because browser storage is origin-specific. Export a backup locally and import it on the live site if needed.
 
 ## Appearance and mobile layout
 

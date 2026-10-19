@@ -122,3 +122,12 @@ Use **Configurações → Exportar backup** regularly. Importing a validated bac
 - `public/sw.js` — production offline caching
 - `tests/scheduler.test.mjs` — scheduling, backups, content integrity tests
 - `tests/browser/refinements.spec.ts` — desktop/mobile browser checks
+
+
+## Conteúdos de estudo em Markdown
+
+A base de explicações curadas começa em [conteudos/README.md](conteudos/README.md).
+O primeiro módulo é [CGU 2026 — Estado e política](conteudos/cgu-2026/conhecimentos-basicos/01-estado-e-politica/README.md), organizado pelos nove tópicos da disciplina, com aulas, exemplos, mapa de cobertura e fontes.
+
+Esses documentos constituem material de estudo no repositório; a integração com os cartões do aplicativo será feita em uma etapa posterior.
+

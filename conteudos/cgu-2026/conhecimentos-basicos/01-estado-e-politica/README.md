@@ -26,6 +26,12 @@ O texto é uma síntese didática original. Os casos, comparações e roteiros d
 
 O objetivo é compreender relações e aplicar distinções. A existência de uma fonte na bibliografia não significa que ela seja leitura obrigatória indicada pela banca. A cobertura é introdutória e não representa garantia de esgotamento das possibilidades de cobrança.
 
-## Manutenção
+## Flashcards no aplicativo
+
+O primeiro lote tem 50 cartões originais, distribuídos pelos nove tópicos: 30 de pergunta e resposta e 20 de certo ou errado, sendo 10 certos e 10 errados. São itens de estudo elaborados a partir deste módulo, não questões oficiais da banca.
+
+No aplicativo, selecione CGU 2026 → Conhecimentos básicos → Estado e política. Cada cartão possui uma resposta curta e uma explicação de apoio com a referência da aula. O lote está definido em [src/decks/cgu-estado-politica.ts](../../../../src/decks/cgu-estado-politica.ts) e registrado em [src/content.ts](../../../../src/content.ts).
+
+## Manutenção dos conteúdos e cartões
 
 Consulta inicial: 19/10/2026. Ao expandir uma aula, preservar seus links, atualizar a matriz de cobertura e verificar os dispositivos mencionados. Eventuais alterações posteriores ao edital devem ser registradas separadamente, observando o marco temporal definido no certame.

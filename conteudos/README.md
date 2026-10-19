@@ -15,4 +15,4 @@ Base de explicações em Markdown, organizada por concurso, bloco, disciplina e 
 - Textos analíticos apresentam mecanismos, condições e limites; não transformam uma hipótese em regra universal.
 - Mudanças normativas e retificações exigem nova conferência. A consulta ao texto consolidado não substitui a regra temporal do edital.
 
-Esta primeira etapa contém aulas e referências. A futura conversão em flashcards deve preservar os caminhos dos assuntos e apontar para a explicação de origem.
+A base contém aulas e referências. O módulo Estado e política da CGU 2026 também possui 50 cartões integrados ao aplicativo. Novas conversões devem preservar os caminhos dos assuntos e apontar para a explicação de origem.

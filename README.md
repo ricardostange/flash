@@ -65,7 +65,9 @@ Edit **`src/content.ts`**:
 - `explanations`: reusable main content with title, paragraphs, and source.
 - `cards`: question, direct answer, leaf `subjectId`, and shared `explanationId`.
 
-Multiple cards can point to the same explanation. Updating that explanation updates the content shown with every related card. Card IDs are used to persist scheduling: keep them stable when editing questions. The included 12 cards are demonstration material, not a complete course.
+Multiple cards can point to the same explanation. Updating that explanation updates the content shown with every related card. Card IDs are used to persist scheduling: keep them stable when editing questions. The app includes 50 original CGU 2026 study cards on Estado e política, alongside the original 12 demonstration cards. These are study material, not official exam questions or a complete course.
+
+The CGU deck lives in `src/decks/cgu-estado-politica.ts` and is registered in `src/content.ts`. Its subject hierarchy follows CGU 2026 → Conhecimentos básicos → Estado e política → the nine syllabus topics. Each card references a shared explanation whose source points to the corresponding Markdown lesson and references.
 
 ```ts
 // Leaf inside subjects:
@@ -115,6 +117,7 @@ Use **Configurações → Exportar backup** regularly. Importing a validated bac
 ## Project structure
 
 - `src/content.ts` — subject tree, cards, shared explanations
+- `src/decks/cgu-estado-politica.ts` — 50 CGU cards and their subject tree and shared explanations
 - `src/scheduler.ts` — scheduling, date keys, backup validation
 - `src/main.tsx` — React UI, sessions, local persistence
 - `src/styles.css` — theme tokens, responsive design and reduced-motion support
@@ -129,5 +132,5 @@ Use **Configurações → Exportar backup** regularly. Importing a validated bac
 A base de explicações curadas começa em [conteudos/README.md](conteudos/README.md).
 O primeiro módulo é [CGU 2026 — Estado e política](conteudos/cgu-2026/conhecimentos-basicos/01-estado-e-politica/README.md), organizado pelos nove tópicos da disciplina, com aulas, exemplos, mapa de cobertura e fontes.
 
-Esses documentos constituem material de estudo no repositório; a integração com os cartões do aplicativo será feita em uma etapa posterior.
+O módulo Estado e política já está integrado ao aplicativo com 50 cartões: 30 de pergunta e resposta e 20 de certo ou errado, com explicações de apoio. Os 20 itens de julgamento se dividem em 10 certos e 10 errados. Os IDs dos cartões são estáveis para preservar o histórico de revisão.
 

@@ -280,7 +280,7 @@ function App() {
     );
     const a = document.createElement("a");
     a.href = url;
-    a.download = `memoria-backup-${localDate()}.json`;
+    a.download = `flash-backup-${localDate()}.json`;
     a.click();
     URL.revokeObjectURL(url);
     setNotice("Backup exportado. Guarde-o em um lugar seguro.");
@@ -297,7 +297,7 @@ function App() {
         setNotice("Progresso restaurado.");
       }
     } catch {
-      setNotice("Arquivo inválido. Escolha um backup do Memória.");
+      setNotice("Arquivo inválido. Escolha um backup do flash.");
     }
     if (fileInput.current) fileInput.current.value = "";
   }
@@ -340,7 +340,7 @@ function App() {
           <span className="brand-mark">
             <Layers size={24} />
           </span>
-          memória<span className="brand-dot">.</span>
+          flash<span className="brand-dot">.</span>
         </a>
         <div className="nav-caption">ESTUDAR</div>
         <button

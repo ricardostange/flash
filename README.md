@@ -1,4 +1,4 @@
-# Memória
+# flash
 
 A mobile-friendly, Portuguese-language flashcard website for concurso preparation. Content lives in the repository; personal review progress lives in the browser. No accounts, database, or backend.
 
@@ -84,6 +84,8 @@ During a session, try recalling the answer before revealing it, then choose:
 This is a deliberately simple spaced-repetition scheduler, not Anki's algorithm. Practicing a card early also updates its schedule. Daily counts include repeated attempts. Keyboard users can tab through all controls; Space reveals an answer (or activates the focused button), and 1–4 rate it. Shortcuts are disabled in dialogs and text fields. Dialogs trap focus and close with Escape.
 
 ## Local data and backups
+
+The internal `memoria-*` storage keys are retained for compatibility, so the rename to **flash** preserves existing progress, appearance preferences, and backups.
 
 Progress is saved after every rating in `localStorage` under `memoria-progress-v1`. Clearing browser data removes it. Different browsers, origins, and devices have independent progress; there is no automatic synchronization. Avoid simultaneous study in multiple tabs, as the last save wins.
 
